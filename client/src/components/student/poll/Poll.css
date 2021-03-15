@@ -1,0 +1,10 @@
+.poll-vote-item{
+    font-size: 15px;
+    font-weight: bolder;
+    padding: 5px;
+}
+
+.poll-result-item{
+    font-weight: bolder;
+    font-size: 15px;
+}
