@@ -2,7 +2,7 @@ import React from 'react';
 // import image from '../../../assets/img/img1.jpg'
 import { Col, Card, Row } from 'react-bootstrap';
 import ECommerceReadModal from './ECommerceReadModal';
-import ECommerceBuyModal from './ECommerceBuyModal';
+// import ECommerceBuyModal from './ECommerceBuyModal';
 
 const ECommerceContent = (props) => {
 	return (
@@ -51,7 +51,7 @@ const ECommerceContent = (props) => {
 						date={props.date}
 						file={props.file}
 					/>
-					<ECommerceBuyModal
+					{/* <ECommerceBuyModal
 						id={props.id}
 						name={props.name}
 						title={props.title}
@@ -63,7 +63,7 @@ const ECommerceContent = (props) => {
 						info={props.info}
 						date={props.date}
 						file={props.file}
-					/>
+					/> */}
 				</Row>
 			</Card>
 		</Col>

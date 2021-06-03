@@ -6,8 +6,6 @@ import {
 	faTwitter,
 	faInstagram,
 	faFacebook,
-	faLinkedin,
-	faGooglePlus,
 } from '@fortawesome/free-brands-svg-icons';
 import { Link } from 'react-scroll';
 

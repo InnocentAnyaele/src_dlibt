@@ -17,6 +17,7 @@ import StudentECommerce from './components/student/e-commerce/ECommerce'
 import StudentPoll from './components/student/poll/Poll'
 import StudentMessage from './components/student/message/Message'
 import StudentApplication from './components/student/application/Application'
+import StudentPassword from './components/student/password/Password'
 
 import SrcSideNav from './components/src/sidebar/SideBar'
 import SrcGallery from './components/src/gallery/Gallery'
@@ -95,6 +96,11 @@ const studentRoutes = [
     path: '/studentApplication',
     sidebar: () => <StudentSideNav/>,
     main: () => <StudentApplication/>
+  },
+  {
+    path: '/studentPassword',
+    sidebar: () => <StudentSideNav/>,
+    main: () => <StudentPassword/>
   }
 ]
 

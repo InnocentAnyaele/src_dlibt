@@ -2,7 +2,7 @@ import React from 'react';
 // import image from '../../../assets/img/img1.jpg'
 import { Col, Card, Row, Button } from 'react-bootstrap';
 import ECommerceReadModal from '../../student/e-commerce/ECommerceReadModal';
-import ECommerceBuyModal from '../../student/e-commerce/ECommerceBuyModal';
+// import ECommerceBuyModal from '../../student/e-commerce/ECommerceBuyModal';
 import DeleteIcon from '@material-ui/icons/Delete';
 import axios from 'axios';
 import { storage } from '../../../firebase/firebase';
@@ -74,7 +74,7 @@ const ECommerceContent = (props) => {
 						date={props.date}
 						file={props.file}
 					/>
-					<ECommerceBuyModal
+					{/* <ECommerceBuyModal
 						id={props.id}
 						name={props.name}
 						title={props.title}
@@ -85,7 +85,7 @@ const ECommerceContent = (props) => {
 						info={props.info}
 						date={props.date}
 						file={props.file}
-					/>
+					/> */}
 					<Button variant='danger' onClick={deleteHandler}>
 						<DeleteIcon />
 					</Button>
