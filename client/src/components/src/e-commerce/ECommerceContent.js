@@ -6,6 +6,8 @@ import ECommerceReadModal from '../../student/e-commerce/ECommerceReadModal';
 import DeleteIcon from '@material-ui/icons/Delete';
 import axios from 'axios';
 import { storage } from '../../../firebase/firebase';
+import ECommerceUpdateStock from './EcommerceUpdateStock';
+import ECommerceAddToCart from './ECommerceAddToCart';
 
 const ECommerceContent = (props) => {
 	const deleteHandler = () => {
@@ -46,6 +48,20 @@ const ECommerceContent = (props) => {
 					<h3 className='card-title' style={{ fontSize: '20px' }}>
 						<b>{props.title.substring(0, 40)}</b>
 					</h3>
+					{props.type === 'product' ? (
+						<ECommerceUpdateStock key={props._id} id={props.id} />
+					) : null}{' '}
+					{props.stock < 5 ? (
+						<p className='text-muted'>
+							Stock : {props.stock}{' '}
+							<span className='badge badge-danger'>low</span>{' '}
+						</p>
+					) : (
+						<p className='text-muted'>
+							Stock : {props.stock}{' '}
+							<span className='badge badge-primary'>high</span>{' '}
+						</p>
+					)}{' '}
 					<div className='card-text'>
 						<div className='text-center'>
 							<p style={{ fontSize: '15px' }} className='text-muted'>
@@ -62,6 +78,19 @@ const ECommerceContent = (props) => {
 				</div>
 				<Row className='mb-2' style={{ margin: 'auto auto' }}>
 					<ECommerceReadModal
+						id={props.id}
+						url={props.url}
+						name={props.name}
+						title={props.title}
+						price={props.price}
+						email={props.email}
+						phone={props.phone}
+						type={props.type}
+						info={props.info}
+						date={props.date}
+						file={props.file}
+					/>
+					<ECommerceAddToCart
 						id={props.id}
 						url={props.url}
 						name={props.name}

@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Spinner } from 'react-bootstrap';
 import axios from 'axios';
-import DeleteApplication from './DeleteApplication';
+import DeletePurchase from './DeletePurchase';
 
-const ApplicationTable = () => {
+const PurchaseTable = () => {
 	const [items, setItems] = useState([]);
 	const [loading, setLoading] = useState(true);
 
+	// const user = localStorage.getItem('studentUser');
+
 	useEffect(() => {
 		axios
-			.get('/application/getApplication')
+			.get(
+				`ecommerce/getStudentPurchase/${localStorage.getItem('studentUser')}`,
+			)
 			.then((res) => {
 				setItems(res.data);
 				setLoading(false);
@@ -26,14 +30,12 @@ const ApplicationTable = () => {
 			<Table striped>
 				<thead style={{ color: 'blue' }}>
 					<tr>
-						<th>Photo</th>
-						<th>ID</th>
 						<th>Name</th>
-						<th>Department</th>
-						<th>Position</th>
-						<th>Contact</th>
+						<th>ID</th>
 						<th>Email</th>
-						<th>Reference</th>
+						<th>Phone</th>
+						<th>Price</th>
+						<th>Products</th>
 						<th>Date</th>
 						<th>Delete</th>
 					</tr>
@@ -46,28 +48,21 @@ const ApplicationTable = () => {
 					) : (
 						items.map((item) => (
 							<tr key={item._id}>
-								{/* <td>{item.file}</td> */}
-								<td>
-									<a className='lightbox' href={item.url}>
-										{' '}
-										<img src={item.url} alt='' className='card-img-top' />
-									</a>
-								</td>
-								{/* <td><img className="card-img-top" src={require(`../../../assets/application/${item.file}`)} alt="Card"/></td> */}
-								<td>{item.ID}</td>
 								<td>{item.name}</td>
-								<td>{item.department}</td>
-								<td>{item.position}</td>
-								<td>{item.contact}</td>
+								<td>{item.user}</td>
 								<td>{item.email}</td>
-								<td>{item.reference}</td>
+								<td>{item.phone}</td>
+								<td>{item.price}</td>
+								<td>
+									<ul>
+										{item.product.map((product) => (
+											<li key={product.id}> {product.title} </li>
+										))}
+									</ul>
+								</td>
 								<td>{item.createdAt}</td>
 								<td>
-									<DeleteApplication
-										key={item._id}
-										id={item._id}
-										file={item.file}
-									/>
+									<DeletePurchase key={item._id} id={item._id} />
 								</td>
 							</tr>
 						))
@@ -78,4 +73,4 @@ const ApplicationTable = () => {
 	);
 };
 
-export default ApplicationTable;
+export default PurchaseTable;

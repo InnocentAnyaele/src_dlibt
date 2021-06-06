@@ -3,6 +3,7 @@ import React from 'react';
 import { Col, Card, Row } from 'react-bootstrap';
 import ECommerceReadModal from './ECommerceReadModal';
 // import ECommerceBuyModal from './ECommerceBuyModal';
+import ECommerceAddToCart from '../../src/e-commerce/ECommerceAddToCart';
 
 const ECommerceContent = (props) => {
 	return (
@@ -23,6 +24,15 @@ const ECommerceContent = (props) => {
 					<h3 className='card-title' style={{ fontSize: '20px' }}>
 						<b>{props.title.substring(0, 40)}</b>
 					</h3>
+					{props.stock < 5 ? (
+						<p className='text-muted'>
+							Stock : {props.stock} <span style={{ color: 'red' }}>low</span>{' '}
+						</p>
+					) : (
+						<p className='text-muted'>
+							Stock : {props.stock} <span style={{ color: 'blue' }}>high</span>{' '}
+						</p>
+					)}
 					<div className='card-text'>
 						<div className='text-center'>
 							<p style={{ fontSize: '15px' }} className='text-muted'>
@@ -42,6 +52,19 @@ const ECommerceContent = (props) => {
 						id={props.id}
 						name={props.name}
 						url={props.url}
+						title={props.title}
+						price={props.price}
+						email={props.email}
+						phone={props.phone}
+						type={props.type}
+						info={props.info}
+						date={props.date}
+						file={props.file}
+					/>
+					<ECommerceAddToCart
+						id={props.id}
+						url={props.url}
+						name={props.name}
 						title={props.title}
 						price={props.price}
 						email={props.email}
