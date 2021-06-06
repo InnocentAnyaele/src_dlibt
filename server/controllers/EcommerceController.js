@@ -305,14 +305,14 @@ const purchaseEcommerce = (req, res, next) => {
 			var transporter = nodemailer.createTransport({
 				service: 'gmail',
 				auth: {
-					user: process.env.EMAIL_USER || EMAIL_USER,
-					pass: process.env.EMAIL_PASSWORD || EMAIL_PASSWORD,
+					user: process.env.EMAIL_USER,
+					pass: process.env.EMAIL_PASSWORD,
 				},
 			});
 
 			var mailOptions = {
-				from: `SRC MANAGEMENT SYSTEM <${process.env.EMAIL_USER || EMAIL_USER}>`,
-				to: process.env.EMAIL_RECEIVER || EMAIL_RECEIVER,
+				from: `SRC MANAGEMENT SYSTEM <${process.env.EMAIL_USER}>`,
+				to: process.env.EMAIL_RECEIVER,
 				subject: 'SRC Purchase Request',
 				html: `<p>Name: ${name}</p>
 					<p>Info: ${information}</p>
