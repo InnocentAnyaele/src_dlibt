@@ -1,6 +1,7 @@
 const Ecommerce = require('../models/Ecommerce');
 const nodemailer = require('nodemailer');
 const Purchase = require('../models/Purchase');
+require('dotenv').config();
 
 const addEcommerce = (req, res, next) => {
 	const title = req.body.title;
@@ -246,14 +247,14 @@ const purchaseEcommerce = (req, res, next) => {
 	const name = req.body.name;
 	const email = req.body.email;
 	const phone = req.body.phone;
-	const info = req.body.info;
+	const information = req.body.info;
 	const product = req.body.product;
 	const price = req.body.price;
 	const user = req.body.user;
 
 	let data = new Purchase({
 		name: name,
-		info: info,
+		info: information,
 		phone: phone,
 		price: price,
 		email: email,
@@ -264,46 +265,77 @@ const purchaseEcommerce = (req, res, next) => {
 	data
 		.save()
 		.then(() => {
-			res.json({ message: 'Product added successfully' });
+			res.status(200).send('Product added successfully');
+
+			// async function main() {
+			// 	// let testAccount = await nodemailer.createTestAccount();
+			// 	let transporter = nodemailer.createTransport({
+			// 		host: 'smtp.ethereal.email',
+			// 		port: 587,
+			// 		secure: false,
+			// 		auth: {
+			// 			// user: testAccount.user,
+			// 			// pass: testAccount.pass,
+			// 			user: 'mellie.metz18@ethereal.email',
+			// 			pass: 'XE68b3Pfm9hqfzsBvK',
+			// 		},
+			// 	});
+
+			// 	let info = await transporter.sendMail({
+			// 		from: '"SRC Management system" <luisnerma545@gmail.com>',
+			// 		to: 'luisnerma545@gmail.com',
+			// 		subject: 'SRC Purchase Request',
+			// 		// text: 'You have a purchase request from the SRC management system',
+			// 		html: `<p>Name: ${name}</p>
+			// 		<p>Info: ${information}</p>
+			// 		<p>User: ${user}</p>
+			// 		<p>Email: ${email} </p>
+			// 		<p>Phone: ${phone}</p>
+			// 		<p>Price: ${price}</p>
+			// 		<p>Product: ${product.map((item) => item.title)}</p>
+			// 		<p>Phone: ${phone}</p>`,
+			// 	});
+
+			// 	console.log('Message sent: %s', info.messageId);
+			// 	console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+			// }
+
+			// main().catch(console.error);
+
+			var transporter = nodemailer.createTransport({
+				service: 'gmail',
+				auth: {
+					user: process.env.EMAIL_USER,
+					pass: process.env.EMAIL_PASSWORD,
+				},
+			});
+
+			var mailOptions = {
+				from: `SRC MANAGEMENT SYSTEM <${process.env.EMAIL_USER}>`,
+				to: process.env.EMAIL_RECEIVER,
+				subject: 'SRC Purchase Request',
+				html: `<p>Name: ${name}</p>
+					<p>Info: ${information}</p>
+					<p>User: ${user}</p>
+					<p>Email: ${email} </p>
+					<p>Phone: ${phone}</p>
+					<p>Price: ${price}</p>
+					<p>Product: ${product.map((item) => item.title)}</p>
+					<p>Phone: ${phone}</p>`,
+			};
+
+			transporter.sendMail(mailOptions, function (error, info) {
+				if (error) {
+					console.log(error);
+				} else {
+					console.log('Email sent: ' + info.response);
+				}
+			});
 		})
+
 		.catch((err) => {
 			res.status(400).send(err);
 		});
-
-	// let transporter = nodemailer.createTransport({
-	//     host: "smtp.ethereal.email",
-	//     port: 587,
-	//     secure: false, // true for 465, false for other ports
-	//     auth: {
-	//       user: 'kallie90@ethereal.email', // generated ethereal user
-	//       pass: 'u6Qt43Y3K8jUkPfhD3', // generated ethereal password
-	//     },
-	//   })
-
-	//   // send mail with defined transport object
-	//   let info = transporter.sendMail({
-	//     from: '"Datalink SRC - Ecommerce" <innocentanyaele@gmail.com>', // sender address
-	//     to: email, // list of receivers
-	//     subject: "Datalink Src E-commerce", // Subject line
-	//     // text:  message, // plain text body
-	//     html: `<p>You have a new purchase request from Datalink SRC E-commerce</p>
-	//     <h3>Purchase Details</h3>
-	//     <ul>
-	//     <li> Name : ${name} </li>
-	//     <li> Phone: ${phone} </li>
-	//     <li> Email: ${email} </li>
-	//     <li> Product: ${product} </li>
-	//     <li> Info: ${message} </li>
-	//      </ul>`, // html body
-
-	//   }, function(err, result) {
-	//       if(err) {
-	//           res.status(500).send()
-	//       }
-	//       if(result) {
-	//           res.status(200).send()
-	//       }
-	//   } )
 };
 
 module.exports = {
