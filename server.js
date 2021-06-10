@@ -6,7 +6,7 @@ const nodemailer = require('nodemailer')
 const path = require('path')
 require("dotenv").config()
 
-const SrcRoute = require('./server/routes/src')
+const SrcRoute = require('./server/routes/src') 
 const StudentRoute = require('./server/routes/student')
 const WelcomeRoute = require('./server/routes/welcome')
 const GalleryRoute = require('./server/routes/gallery')

@@ -1,9 +1,9 @@
 import React from 'react';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
-function ECommerceAddToCart(props) {
-	const cart = [];
+const cart = [];
 
+function ECommerceAddToCart(props) {
 	const addToCartHandler = () => {
 		// const getCartItems = localStorage.getItem('cart');
 		// let cartArray = [];
