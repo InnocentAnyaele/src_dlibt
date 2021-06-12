@@ -157,6 +157,12 @@ class ECommerceBuyModal extends Component {
 								Total price: {this.calculatePrice()}
 							</div>
 						</span>
+						<p>
+							<i>
+								For mobile money payment, please pay the due amount using the
+								number displayed on the card
+							</i>
+						</p>
 
 						{/* {JSON.parse(localStorage.getItem('cart')).map((item) => (
 							<p key={item.id}> {item.title} </p>
