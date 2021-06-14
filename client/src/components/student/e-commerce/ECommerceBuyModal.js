@@ -159,8 +159,9 @@ class ECommerceBuyModal extends Component {
 						</span>
 						<p>
 							<i>
-								For mobile money payment, please pay the due amount using the
-								number displayed on the card
+								Payment is on delivery. But for advance payment with mtn mobile
+								money, please pay the due amount to{' '}
+								<span style={{ backgroundColor: 'yellow' }}>0557187667</span>.
 							</i>
 						</p>
 
